@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Exposure Tracker | Taylor Monroe</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1e3c;--navy-mid:#1a2f58;--navy-light:#243870;
+  --teal:#1e9e90;--teal-light:#25c0af;--teal-pale:#e6f7f5;
+  --gold:#c49a00;--gold-bright:#e8b800;--gold-pale:#fdf8e3;
+  --white:#fff;--off:#f7f8fc;
+  --g50:#f0f2f8;--g100:#e2e6f0;--g200:#c8cfe0;--g400:#8a93aa;--g600:#4a5370;--g800:#1e2540;
+  --sh-sm:0 2px 8px rgba(15,30,60,.08);--sh-md:0 6px 24px rgba(15,30,60,.12);--sh-lg:0 16px 48px rgba(15,30,60,.18);
+  --r:10px;--rl:16px;
+}
+html{font-size:15px}
+body{font-family:'DM Sans',sans-serif;background:var(--off);color:var(--g800);min-height:100vh}
+
+/* HEADER */
+.page-header{background:var(--navy);position:relative;overflow:hidden}
+.hdr-pattern{position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent,transparent 40px,rgba(255,255,255,.025) 40px,rgba(255,255,255,.025) 80px)}
+.hdr-accent{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold-bright))}
+.hdr-inner{position:relative;max-width:1280px;margin:0 auto;padding:36px 40px 34px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+.hdr-eyebrow{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-bright);margin-bottom:10px}
+.hdr-title{font-family:'DM Serif Display',serif;font-size:34px;color:var(--white);line-height:1.1;margin-bottom:8px}
+.hdr-title em{color:var(--teal-light);font-style:normal}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.3px}
+.hdr-pill{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:11px 22px;font-size:12px;color:var(--white);font-weight:500;white-space:nowrap}
+.hdr-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--teal-light);box-shadow:0 0 8px var(--teal-light);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+
+/* STATS */
+.stats-wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.stats-row{display:grid;grid-template-columns:repeat(7,1fr);background:var(--white);border-radius:0 0 var(--rl) var(--rl);box-shadow:var(--sh-md);margin-bottom:32px;overflow:hidden}
+.stat-cell{padding:20px 12px;text-align:center;border-right:1px solid var(--g100);position:relative;cursor:default;transition:background .2s}
+.stat-cell:hover{background:var(--teal-pale)}
+.stat-cell:last-child{border-right:none}
+.stat-cell::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:3px;background:var(--teal);border-radius:2px 2px 0 0;transition:width .3s}
+.stat-cell:hover::after{width:60%}
+.stat-num{font-family:'DM Serif Display',serif;font-size:30px;color:var(--navy);line-height:1;margin-bottom:5px}
+.stat-num.gold{color:var(--gold)}
+.stat-lbl{font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--g400)}
+
+/* MAIN */
+.main{max-width:1280px;margin:0 auto;padding:0 40px 60px}
+
+/* CARDS */
+.card{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-sm);margin-bottom:20px;overflow:hidden}
+.card-hdr{display:flex;align-items:center;gap:14px;padding:20px 26px 18px;border-bottom:1px solid var(--g100)}
+.card-icon{width:36px;height:36px;border-radius:9px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-icon svg{width:17px;height:17px;stroke:var(--teal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card-ttl{font-size:14px;font-weight:600;color:var(--navy)}
+.card-sub{font-size:11.5px;color:var(--g400);margin-top:2px}
+.card-body{padding:24px 26px}
+
+/* FORM */
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--g400)}
+.fg input,.fg select,.fg textarea{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--g800);background:var(--g50);border:1.5px solid var(--g100);border-radius:8px;padding:9px 12px;outline:none;transition:border-color .18s,box-shadow .18s,background .18s;width:100%}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(30,158,144,.1);background:var(--white)}
+.fg textarea{resize:vertical;min-height:72px}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:14px}
+.fgrid-1{grid-template-columns:1fr}
+
+/* BUTTONS */
+.btn-row{display:flex;gap:10px;justify-content:flex-end;padding-top:6px}
+.btn{font-family:'DM Sans',sans-serif;font-size:12.5px;font-weight:600;border:none;border-radius:8px;padding:9px 22px;cursor:pointer;transition:all .18s;letter-spacing:.2px}
+.btn-primary{background:var(--teal);color:var(--white)}
+.btn-primary:hover{background:var(--teal-light);transform:translateY(-1px);box-shadow:0 4px 14px rgba(30,158,144,.3)}
+.btn-ghost{background:var(--g50);color:var(--g600);border:1.5px solid var(--g100)}
+.btn-ghost:hover{background:var(--g100)}
+.btn-gold{background:var(--gold);color:var(--white)}
+.btn-gold:hover{background:var(--gold-bright);transform:translateY(-1px);box-shadow:0 4px 14px rgba(196,154,0,.3)}
+.btn-danger{background:transparent;color:#dc2626;border:1.5px solid #fecaca}
+.btn-danger:hover{background:#fef2f2}
+.btn-sm{padding:5px 12px;font-size:11px;border-radius:6px}
+
+/* FILTERS */
+.filter-bar{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;padding:16px 26px;border-bottom:1px solid var(--g100)}
+.filter-bar .fg{min-width:110px;flex:1}
+.filter-actions{display:flex;gap:8px;align-items:flex-end;margin-left:auto}
+
+/* TABLE */
+.tbl-meta{padding:13px 26px 12px;display:flex;align-items:center;justify-content:space-between}
+.tbl-count{font-size:12.5px;font-weight:600;color:var(--navy)}
+.tbl-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--navy);color:rgba(255,255,255,.75);font-size:9.5px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;padding:11px 16px;text-align:left;white-space:nowrap}
+thead th:first-child{color:rgba(255,255,255,.3);width:36px}
+tbody tr{border-bottom:1px solid var(--g100);transition:background .1s}
+tbody tr:hover{background:var(--teal-pale)}
+tbody tr:last-child{border-bottom:none}
+td{padding:11px 16px;vertical-align:middle}
+.td-school{font-weight:600;color:var(--navy);font-size:13px}
+.td-num{color:var(--g400);font-weight:600;font-size:11px}
+.td-notes{max-width:190px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--g600)}
+.td-email a{color:var(--teal);text-decoration:none;font-size:11.5px}
+.td-email a:hover{text-decoration:underline}
+.td-dash{color:var(--g200)}
+.date-cell{white-space:nowrap;font-weight:500;color:var(--g600);font-size:12px}
+
+/* BADGES */
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.3px;white-space:nowrap}
+.b-d1{background:#dbeafe;color:#1e40af}.b-d2{background:#ede9fe;color:#5b21b6}
+.b-d3{background:#fef3c7;color:#92400e}.b-naia{background:#d1fae5;color:#065f46}
+.b-juco{background:#fee2e2;color:#991b1b}
+.b-intro{background:#e0f2fe;color:#075985}.b-high{background:#fef9c3;color:#78350f}
+.b-stats{background:#fce7f3;color:#9d174d}.b-follow{background:#f3e8ff;color:#6b21a8}
+.b-vid{background:#d1fae5;color:#065f46}.b-other{background:var(--g100);color:var(--g600)}
+.b-reg{background:var(--g50);color:var(--g600);border:1px solid var(--g100)}
+.b-yes{background:#d1fae5;color:#065f46}.b-pend{background:#fef3c7;color:#92400e}.b-no{background:var(--g100);color:var(--g600)}
+
+/* EMPTY */
+.empty{text-align:center;padding:64px 20px;color:var(--g400)}
+.empty-icon{width:54px;height:54px;background:var(--g50);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+.empty-icon svg{width:24px;height:24px;stroke:var(--g200);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.empty-ttl{font-size:14px;font-weight:600;color:var(--g600);margin-bottom:4px}
+.empty-sub{font-size:12px}
+
+/* TOAST */
+.toast{position:fixed;bottom:26px;right:26px;background:var(--navy);color:var(--white);padding:13px 22px;border-radius:var(--r);font-size:13px;font-weight:500;box-shadow:var(--sh-lg);transform:translateY(60px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);z-index:9999;border-left:3px solid var(--teal);pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.err{border-left-color:#ef4444}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="hdr-pattern"></div>
+  <div class="hdr-inner">
+    <div>
+      <div class="hdr-eyebrow">Softball Recruiting Pipeline</div>
+      <div class="hdr-title">College Exposure<br><em>Email Tracker</em></div>
+      <div class="hdr-sub">Taylor Monroe &nbsp;&bull;&nbsp; #6 &nbsp;&bull;&nbsp; CF / Utility &nbsp;&bull;&nbsp; Sabercats 13U Foster &nbsp;&bull;&nbsp; Class of 2030</div>
+    </div>
+    <div class="hdr-pill"><span class="dot"></span>Active Pipeline</div>
+  </div>
+  <div class="hdr-accent"></div>
+</div>
+
+<div class="stats-wrap">
+  <div class="stats-row">
+    <div class="stat-cell"><div class="stat-num" id="sTot">0</div><div class="stat-lbl">Total Sent</div></div>
+    <div class="stat-cell"><div class="stat-num gold" id="sResp">0</div><div class="stat-lbl">Responses</div></div>
+    <div class="stat-cell"><div class="stat-num" id="sD1">0</div><div class="stat-lbl">NCAA D1</div></div>
+    <div class="stat-cell"><div class="stat-num" id="sD2">0</div><div class="stat-lbl">NCAA D2</div></div>
+    <div class="stat-cell"><div class="stat-num" id="sD3">0</div><div class="stat-lbl">NCAA D3</div></div>
+    <div class="stat-cell"><div class="stat-num" id="sNAIA">0</div><div class="stat-lbl">NAIA</div></div>
+    <div class="stat-cell"><div class="stat-num" id="sJUCO">0</div><div class="stat-lbl">JUCO</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="card">
+    <div class="card-hdr">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <div>
+        <div class="card-ttl">Log New Exposure Email</div>
+        <div class="card-sub">Record each outreach to a college coaching staff</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="fgrid">
+        <div class="fg"><label>Date Sent</label><input type="date" id="fDate"></div>
+        <div class="fg"><label>School / Program</label><input type="text" id="fSchool" placeholder="e.g. Michigan State"></div>
+        <div class="fg"><label>Coach Name</label><input type="text" id="fCoach" placeholder="Coach Smith"></div>
+        <div class="fg"><label>Coach Email</label><input type="email" id="fEmail" placeholder="coach@school.edu"></div>
+      </div>
+      <div class="fgrid">
+        <div class="fg"><label>Division</label>
+          <select id="fDiv">
+            <option value="">Select division...</option>
+            <option value="NCAA D1">NCAA Division 1</option>
+            <option value="NCAA D2">NCAA Division 2</option>
+            <option value="NCAA D3">NCAA Division 3</option>
+            <option value="NAIA">NAIA</option>
+            <option value="JUCO">JUCO</option>
+          </select>
+        </div>
+        <div class="fg"><label>Exposure Type</label>
+          <select id="fType">
+            <option value="">Select type...</option>
+            <option value="Intro Email">Intro / Cold Email</option>
+            <option value="Highlight Reel">Highlight Reel</option>
+            <option value="Stats / Profile">Stats / Profile</option>
+            <option value="Follow-Up">Follow-Up</option>
+            <option value="Video Clip">Video Clip</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="fg"><label>Region</label>
+          <select id="fReg">
+            <option value="">Select region...</option>
+            <option>Midwest</option><option>Northeast</option><option>Southeast</option>
+            <option>South</option><option>Southwest</option><option>Northwest</option>
+            <option>West</option><option>Mountain West</option><option>Mid-Atlantic</option>
+          </select>
+        </div>
+        <div class="fg"><label>Response Status</label>
+          <select id="fResp">
+            <option value="Pending">Pending</option>
+            <option value="Yes">Yes, responded</option>
+            <option value="No Response">No Response</option>
+          </select>
+        </div>
+      </div>
+      <div class="fgrid fgrid-1">
+        <div class="fg"><label>Notes</label>
+          <textarea id="fNotes" placeholder="Coach feedback, next steps, anything worth remembering..."></textarea>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="clearForm()">Clear Form</button>
+        <button class="btn btn-primary" onclick="addEntry()">+ Add Entry</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-hdr" style="flex-wrap:wrap;gap:14px">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div style="flex:1">
+        <div class="card-ttl">Outreach Log</div>
+        <div class="card-sub">Filter, search, and manage all logged contacts</div>
+      </div>
+      <button class="btn btn-gold" onclick="exportCSV()">Export to CSV</button>
+    </div>
+
+    <div class="filter-bar">
+      <div class="fg" style="min-width:190px;flex:2">
+        <label>Search</label>
+        <input type="text" id="flSearch" placeholder="School, coach, notes..." oninput="render()">
+      </div>
+      <div class="fg"><label>Division</label>
+        <select id="flDiv" onchange="render()">
+          <option value="">All Divisions</option>
+          <option value="NCAA D1">D1</option><option value="NCAA D2">D2</option>
+          <option value="NCAA D3">D3</option><option value="NAIA">NAIA</option><option value="JUCO">JUCO</option>
+        </select>
+      </div>
+      <div class="fg"><label>Region</label>
+        <select id="flReg" onchange="render()">
+          <option value="">All Regions</option>
+          <option>Midwest</option><option>Northeast</option><option>Southeast</option>
+          <option>South</option><option>Southwest</option><option>Northwest</option>
+          <option>West</option><option>Mountain West</option><option>Mid-Atlantic</option>
+        </select>
+      </div>
+      <div class="fg"><label>Type</label>
+        <select id="flType" onchange="render()">
+          <option value="">All Types</option>
+          <option>Intro Email</option><option>Highlight Reel</option><option>Stats / Profile</option>
+          <option>Follow-Up</option><option>Video Clip</option><option>Other</option>
+        </select>
+      </div>
+      <div class="fg"><label>Response</label>
+        <select id="flResp" onchange="render()">
+          <option value="">All</option>
+          <option>Yes</option><option>Pending</option><option>No Response</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <button class="btn btn-ghost" onclick="clearFilters()">Clear</button>
+      </div>
+    </div>
+
+    <div class="tbl-meta">
+      <div class="tbl-count" id="tCount">0 entries</div>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>Date Sent</th><th>School / Program</th><th>Coach</th>
+            <th>Division</th><th>Region</th><th>Exposure Type</th><th>Response</th>
+            <th>Coach Email</th><th>Notes</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let data=[];
+try{data=JSON.parse(localStorage.getItem('tm2030v2')||'[]')}catch(e){}
+
+function save(){try{localStorage.setItem('tm2030v2',JSON.stringify(data))}catch(e){}}
+function today(){return new Date().toISOString().slice(0,10)}
+
+function addEntry(){
+  const d=document.getElementById('fDate').value;
+  const s=document.getElementById('fSchool').value.trim();
+  const dv=document.getElementById('fDiv').value;
+  const tp=document.getElementById('fType').value;
+  const rg=document.getElementById('fReg').value;
+  if(!d||!s||!dv||!tp||!rg){toast('Please fill in Date, School, Division, Type, and Region.','err');return}
+  data.unshift({id:Date.now(),date:d,school:s,coach:document.getElementById('fCoach').value.trim(),email:document.getElementById('fEmail').value.trim(),div:dv,type:tp,region:rg,resp:document.getElementById('fResp').value,notes:document.getElementById('fNotes').value.trim()});
+  save();render();stats();clearForm();toast('Entry added.');
+}
+
+function clearForm(){
+  ['fSchool','fCoach','fEmail','fNotes'].forEach(id=>document.getElementById(id).value='');
+  ['fDiv','fType','fReg'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fResp').value='Pending';
+  document.getElementById('fDate').value=today();
+}
+
+function clearFilters(){
+  ['flSearch','flDiv','flReg','flType','flResp'].forEach(id=>document.getElementById(id).value='');
+  render();
+}
+
+function getFiltered(){
+  const q=document.getElementById('flSearch').value.toLowerCase();
+  const fd=document.getElementById('flDiv').value;
+  const fr=document.getElementById('flReg').value;
+  const ft=document.getElementById('flType').value;
+  const fp=document.getElementById('flResp').value;
+  return data.filter(e=>{
+    if(fd&&e.div!==fd)return false;
+    if(fr&&e.region!==fr)return false;
+    if(ft&&e.type!==ft)return false;
+    if(fp&&e.resp!==fp)return false;
+    if(q&&!`${e.school} ${e.coach} ${e.notes} ${e.email}`.toLowerCase().includes(q))return false;
+    return true;
+  });
+}
+
+function dBadge(d){const m={'NCAA D1':'b-d1','NCAA D2':'b-d2','NCAA D3':'b-d3','NAIA':'b-naia','JUCO':'b-juco'};return`<span class="badge ${m[d]||''}">${d}</span>`}
+function tBadge(t){const m={'Intro Email':'b-intro','Highlight Reel':'b-high','Stats / Profile':'b-stats','Follow-Up':'b-follow','Video Clip':'b-vid','Other':'b-other'};return`<span class="badge ${m[t]||'b-other'}">${t}</span>`}
+function rBadge(r){const m={'Yes':'b-yes','Pending':'b-pend','No Response':'b-no'};return`<span class="badge ${m[r]||'b-no'}">${r}</span>`}
+function fmtD(d){if(!d)return'';const[y,m,dy]=d.split('-');return`${m}/${dy}/${y}`}
+
+function render(){
+  const rows=getFiltered();
+  document.getElementById('tCount').textContent=`${rows.length} entr${rows.length===1?'y':'ies'}`;
+  const tb=document.getElementById('tbody');
+  if(!rows.length){
+    tb.innerHTML=`<tr><td colspan="11"><div class="empty"><div class="empty-icon"><svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div class="empty-ttl">No entries logged yet</div><div class="empty-sub">Use the form above to start tracking your outreach.</div></div></td></tr>`;
+    return;
+  }
+  tb.innerHTML=rows.map((e,i)=>`<tr>
+    <td class="td-num">${i+1}</td>
+    <td class="date-cell">${fmtD(e.date)}</td>
+    <td class="td-school">${e.school}</td>
+    <td style="color:var(--g600)">${e.coach||'<span class="td-dash">—</span>'}</td>
+    <td>${dBadge(e.div)}</td>
+    <td><span class="badge b-reg">${e.region}</span></td>
+    <td>${tBadge(e.type)}</td>
+    <td>${rBadge(e.resp)}</td>
+    <td class="td-email">${e.email?`<a href="mailto:${e.email}">${e.email}</a>`:'<span class="td-dash">—</span>'}</td>
+    <td class="td-notes" title="${e.notes}">${e.notes||'<span class="td-dash">—</span>'}</td>
+    <td>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-ghost btn-sm" onclick="cycleResp(${e.id})">Toggle Reply</button>
+        <button class="btn btn-danger btn-sm" onclick="del(${e.id})">Del</button>
+      </div>
+    </td>
+  </tr>`).join('');
+}
+
+function cycleResp(id){
+  const e=data.find(x=>x.id===id);if(!e)return;
+  const c={'Pending':'Yes','Yes':'No Response','No Response':'Pending'};
+  e.resp=c[e.resp]||'Pending';save();render();stats();toast(`Response: ${e.resp}`);
+}
+
+function del(id){
+  if(!confirm('Remove this entry?'))return;
+  data=data.filter(e=>e.id!==id);save();render();stats();toast('Entry removed.');
+}
+
+function stats(){
+  document.getElementById('sTot').textContent=data.length;
+  document.getElementById('sResp').textContent=data.filter(e=>e.resp==='Yes').length;
+  document.getElementById('sD1').textContent=data.filter(e=>e.div==='NCAA D1').length;
+  document.getElementById('sD2').textContent=data.filter(e=>e.div==='NCAA D2').length;
+  document.getElementById('sD3').textContent=data.filter(e=>e.div==='NCAA D3').length;
+  document.getElementById('sNAIA').textContent=data.filter(e=>e.div==='NAIA').length;
+  document.getElementById('sJUCO').textContent=data.filter(e=>e.div==='JUCO').length;
+}
+
+function exportCSV(){
+  if(!data.length){toast('No entries to export.','err');return}
+  const hdr=['Date Sent','School','Coach','Division','Region','Exposure Type','Response','Coach Email','Notes'];
+  const rows=data.map(e=>[e.date,e.school,e.coach,e.div,e.region,e.type,e.resp,e.email,e.notes].map(v=>`"${(v||'').replace(/"/g,'""')}"`).join(','));
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([[hdr.join(','),...rows].join('\n')],{type:'text/csv'})),download:`Taylor_Monroe_Exposure_Tracker_${today()}.csv`});
+  a.click();URL.revokeObjectURL(a.href);toast('CSV exported.');
+}
+
+function toast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className=`toast${type==='err'?' err':''} show`;
+  setTimeout(()=>t.className='toast',3000);
+}
+
+document.getElementById('fDate').value=today();
+render();stats();
+</script>
+</body>
+</html>
