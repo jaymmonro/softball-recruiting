@@ -1,0 +1,275 @@
+
+<h2 class="sr-only">College Exposure Email Tracker for Taylor Monroe, Class of 2030</h2>
+
+<style>
+.trk-header{background:linear-gradient(135deg,#1a2744,#243258);padding:20px 24px 16px;display:flex;align-items:center;justify-content:space-between;border-radius:var(--border-radius-lg) var(--border-radius-lg) 0 0;margin-bottom:0}
+.trk-title{font-size:17px;font-weight:500;color:#fff}
+.trk-sub{font-size:11px;color:#e9c46a;margin-top:2px;letter-spacing:0.4px}
+.trk-badge{background:#e9c46a;color:#1a2744;font-size:11px;font-weight:500;padding:5px 12px;border-radius:20px}
+.stats-row{display:grid;grid-template-columns:repeat(7,1fr);background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-top:none;padding:14px 20px;gap:0}
+.stat-item{text-align:center;padding:0 8px;border-right:0.5px solid var(--color-border-tertiary)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:20px;font-weight:500;color:#1a2744}
+.stat-lbl{font-size:10px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
+.form-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-top:3px solid #2a9d8f;border-radius:var(--border-radius-lg);padding:20px 20px 16px;margin:12px 0}
+.form-ttl{font-size:13px;font-weight:500;color:#1a2744;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.form-ttl::before{content:'';display:inline-block;width:3px;height:16px;background:#2a9d8f;border-radius:2px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:10px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.5px}
+.fg input,.fg select,.fg textarea{font-size:13px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:7px 10px;color:var(--color-text-primary);width:100%;outline:none}
+.fg textarea{resize:vertical;min-height:58px}
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+.fgrid2{display:grid;grid-template-columns:repeat(4,1fr) 1fr;gap:12px;margin-bottom:12px}
+.fg-full{grid-column:1/-1}
+.btn-row{display:flex;gap:8px;justify-content:flex-end}
+.btn{font-size:12px;font-weight:500;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);padding:7px 16px;cursor:pointer;background:transparent;color:var(--color-text-primary);transition:all 0.15s}
+.btn:hover{background:var(--color-background-secondary)}
+.btn-teal{background:#2a9d8f;color:#fff;border-color:#2a9d8f}
+.btn-teal:hover{background:#3bbfb0;border-color:#3bbfb0}
+.btn-gold{background:#e9c46a;color:#1a2744;border-color:#e9c46a}
+.btn-gold:hover{background:#d4a842;border-color:#d4a842}
+.btn-danger{color:#dc2626;border-color:rgba(220,38,38,0.3)}
+.btn-danger:hover{background:rgba(220,38,38,0.08)}
+.btn-sm{padding:4px 10px;font-size:11px}
+.filter-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;margin-bottom:10px}
+.filter-row .fg{min-width:110px;flex:1}
+.filter-actions{display:flex;gap:8px;align-items:flex-end;margin-left:auto}
+.table-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+.table-hdr{padding:13px 18px 10px;display:flex;justify-content:space-between;align-items:center;border-bottom:0.5px solid var(--color-border-tertiary)}
+.table-hdr-ttl{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:#1a2744;color:#fff;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:0.6px;padding:10px 14px;text-align:left;white-space:nowrap}
+tbody tr{border-bottom:0.5px solid var(--color-border-tertiary);transition:background 0.1s}
+tbody tr:hover{background:var(--color-background-secondary)}
+tbody tr:last-child{border-bottom:none}
+td{padding:9px 14px;vertical-align:middle}
+.nc{max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.badge{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.bd1{background:#dbeafe;color:#1d4ed8}.bd2{background:#ede9fe;color:#6d28d9}.bd3{background:#fef3c7;color:#92400e}
+.bnaia{background:#dcfce7;color:#166534}.bjuco{background:#fee2e2;color:#991b1b}
+.bintro{background:#e0f2fe;color:#0369a1}.bhigh{background:#fef9c3;color:#854d0e}
+.bstats{background:#fee2e2;color:#991b1b}.bfollow{background:#f3e8ff;color:#6b21a8}
+.bvid{background:#d1fae5;color:#065f46}.bother{background:#f1f5f9;color:#475569}
+.breg{background:var(--color-background-secondary);color:var(--color-text-secondary)}
+.byes{background:#dcfce7;color:#166534}.bpend{background:#fef3c7;color:#92400e}.bno{background:#f1f5f9;color:#475569}
+.empty{text-align:center;padding:48px 20px;color:var(--color-text-secondary)}
+.empty-icon{font-size:32px;margin-bottom:8px}
+.empty-ttl{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.toast{position:fixed;bottom:20px;right:20px;background:#1a2744;color:#fff;padding:11px 18px;border-radius:var(--border-radius-md);font-size:12.5px;font-weight:500;opacity:0;transform:translateY(20px);transition:all 0.25s;z-index:999;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.ok{border-left:3px solid #2a9d8f}.toast.err{border-left:3px solid #dc2626}
+</style>
+
+<div class="trk-header">
+  <div>
+    <div class="trk-title">College Exposure Email Tracker</div>
+    <div class="trk-sub">Taylor Monroe &nbsp;|&nbsp; #6 CF/Utility &nbsp;|&nbsp; Sabercats 13U &nbsp;|&nbsp; Class of 2030</div>
+  </div>
+  <div class="trk-badge">Recruiting Pipeline</div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-item"><div class="stat-num" id="sTot">0</div><div class="stat-lbl">Total Sent</div></div>
+  <div class="stat-item"><div class="stat-num" id="sResp">0</div><div class="stat-lbl">Responses</div></div>
+  <div class="stat-item"><div class="stat-num" id="sD1">0</div><div class="stat-lbl">D1</div></div>
+  <div class="stat-item"><div class="stat-num" id="sD2">0</div><div class="stat-lbl">D2</div></div>
+  <div class="stat-item"><div class="stat-num" id="sD3">0</div><div class="stat-lbl">D3</div></div>
+  <div class="stat-item"><div class="stat-num" id="sNAIA">0</div><div class="stat-lbl">NAIA</div></div>
+  <div class="stat-item"><div class="stat-num" id="sJUCO">0</div><div class="stat-lbl">JUCO</div></div>
+</div>
+
+<div class="form-card">
+  <div class="form-ttl">Log new exposure email</div>
+  <div class="fgrid">
+    <div class="fg"><label>Date Sent</label><input type="date" id="fDate"></div>
+    <div class="fg"><label>School / Program</label><input type="text" id="fSchool" placeholder="e.g. Michigan State"></div>
+    <div class="fg"><label>Coach Name</label><input type="text" id="fCoach" placeholder="Coach Smith"></div>
+    <div class="fg"><label>Coach Email</label><input type="email" id="fEmail" placeholder="coach@school.edu"></div>
+  </div>
+  <div class="fgrid">
+    <div class="fg"><label>Division</label><select id="fDiv"><option value="">Select...</option><option value="NCAA D1">NCAA Division 1</option><option value="NCAA D2">NCAA Division 2</option><option value="NCAA D3">NCAA Division 3</option><option value="NAIA">NAIA</option><option value="JUCO">JUCO</option></select></div>
+    <div class="fg"><label>Exposure Type</label><select id="fType"><option value="">Select...</option><option value="Intro Email">Intro / Cold Email</option><option value="Highlight Reel">Highlight Reel</option><option value="Stats / Profile">Stats / Profile</option><option value="Follow-Up">Follow-Up</option><option value="Video Clip">Video Clip</option><option value="Other">Other</option></select></div>
+    <div class="fg"><label>Region</label><select id="fReg"><option value="">Select...</option><option>Midwest</option><option>Northeast</option><option>Southeast</option><option>South</option><option>Southwest</option><option>Northwest</option><option>West</option><option>Mountain West</option><option>Mid-Atlantic</option></select></div>
+    <div class="fg"><label>Response Status</label><select id="fResp"><option value="Pending">Pending</option><option value="Yes">Yes, responded</option><option value="No Response">No Response</option></select></div>
+  </div>
+  <div class="fgrid" style="grid-template-columns:1fr">
+    <div class="fg"><label>Notes</label><textarea id="fNotes" placeholder="Coach feedback, next steps, any details..."></textarea></div>
+  </div>
+  <div class="btn-row">
+    <button class="btn" onclick="clearForm()">Clear</button>
+    <button class="btn btn-teal" onclick="addEntry()">+ Add Entry</button>
+  </div>
+</div>
+
+<div class="filter-row">
+  <div class="fg"><label>Search</label><input type="text" id="flSearch" placeholder="School, coach, notes..." oninput="render()"></div>
+  <div class="fg"><label>Division</label><select id="flDiv" onchange="render()"><option value="">All</option><option value="NCAA D1">D1</option><option value="NCAA D2">D2</option><option value="NCAA D3">D3</option><option value="NAIA">NAIA</option><option value="JUCO">JUCO</option></select></div>
+  <div class="fg"><label>Region</label><select id="flReg" onchange="render()"><option value="">All</option><option>Midwest</option><option>Northeast</option><option>Southeast</option><option>South</option><option>Southwest</option><option>Northwest</option><option>West</option><option>Mountain West</option><option>Mid-Atlantic</option></select></div>
+  <div class="fg"><label>Type</label><select id="flType" onchange="render()"><option value="">All</option><option>Intro Email</option><option>Highlight Reel</option><option>Stats / Profile</option><option>Follow-Up</option><option>Video Clip</option><option>Other</option></select></div>
+  <div class="fg"><label>Response</label><select id="flResp" onchange="render()"><option value="">All</option><option>Yes</option><option>Pending</option><option>No Response</option></select></div>
+  <div class="filter-actions">
+    <button class="btn" onclick="clearFilters()">Clear</button>
+    <button class="btn btn-gold" onclick="exportCSV()">Export CSV</button>
+  </div>
+</div>
+
+<div class="table-card">
+  <div class="table-hdr">
+    <div class="table-hdr-ttl" id="tCount">0 entries</div>
+  </div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Date</th><th>School / Program</th><th>Coach</th>
+        <th>Division</th><th>Region</th><th>Type</th><th>Response</th>
+        <th>Coach Email</th><th>Notes</th><th>Actions</th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let data = [];
+try { data = JSON.parse(localStorage.getItem('tme2030') || '[]'); } catch(e){}
+
+function save(){ try{ localStorage.setItem('tme2030', JSON.stringify(data)); }catch(e){} }
+
+function addEntry(){
+  const d=document.getElementById('fDate').value;
+  const s=document.getElementById('fSchool').value.trim();
+  const dv=document.getElementById('fDiv').value;
+  const t=document.getElementById('fType').value;
+  const r=document.getElementById('fReg').value;
+  if(!d||!s||!dv||!t||!r){toast('Fill in Date, School, Division, Type, and Region.','err');return;}
+  data.unshift({
+    id:Date.now(),
+    date:d, school:s,
+    coach:document.getElementById('fCoach').value.trim(),
+    email:document.getElementById('fEmail').value.trim(),
+    div:dv, type:t, region:r,
+    resp:document.getElementById('fResp').value,
+    notes:document.getElementById('fNotes').value.trim()
+  });
+  save(); render(); stats(); clearForm();
+  toast('Entry added.','ok');
+}
+
+function clearForm(){
+  ['fSchool','fCoach','fEmail','fNotes'].forEach(id=>document.getElementById(id).value='');
+  ['fDiv','fType','fReg'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fResp').value='Pending';
+  document.getElementById('fDate').value=new Date().toISOString().slice(0,10);
+}
+
+function clearFilters(){
+  ['flSearch','flDiv','flReg','flType','flResp'].forEach(id=>document.getElementById(id).value='');
+  render();
+}
+
+function filtered(){
+  const q=document.getElementById('flSearch').value.toLowerCase();
+  const fd=document.getElementById('flDiv').value;
+  const fr=document.getElementById('flReg').value;
+  const ft=document.getElementById('flType').value;
+  const fp=document.getElementById('flResp').value;
+  return data.filter(e=>{
+    if(fd&&e.div!==fd)return false;
+    if(fr&&e.region!==fr)return false;
+    if(ft&&e.type!==ft)return false;
+    if(fp&&e.resp!==fp)return false;
+    if(q&&!`${e.school} ${e.coach} ${e.notes} ${e.email}`.toLowerCase().includes(q))return false;
+    return true;
+  });
+}
+
+function divBadge(d){
+  const m={'NCAA D1':'bd1','NCAA D2':'bd2','NCAA D3':'bd3','NAIA':'bnaia','JUCO':'bjuco'};
+  return `<span class="badge ${m[d]||''}">${d}</span>`;
+}
+function typeBadge(t){
+  const m={'Intro Email':'bintro','Highlight Reel':'bhigh','Stats / Profile':'bstats','Follow-Up':'bfollow','Video Clip':'bvid','Other':'bother'};
+  return `<span class="badge ${m[t]||'bother'}">${t}</span>`;
+}
+function respBadge(r){
+  const m={'Yes':'byes','Pending':'bpend','No Response':'bno'};
+  return `<span class="badge ${m[r]||'bno'}">${r}</span>`;
+}
+function fmtDate(d){if(!d)return'';const[y,m,day]=d.split('-');return`${m}/${day}/${y}`;}
+
+function render(){
+  const rows=filtered();
+  document.getElementById('tCount').textContent=`${rows.length} entr${rows.length===1?'y':'ies'}`;
+  const tbody=document.getElementById('tbody');
+  if(!rows.length){
+    tbody.innerHTML=`<tr><td colspan="11"><div class="empty"><div class="empty-icon"><i class="ti ti-mail" aria-hidden="true"></i></div><div class="empty-ttl">No entries yet</div><div>Use the form above to log your first email.</div></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML=rows.map((e,i)=>`<tr>
+    <td style="color:var(--color-text-secondary);font-weight:500">${i+1}</td>
+    <td style="white-space:nowrap;font-weight:500">${fmtDate(e.date)}</td>
+    <td style="font-weight:500;color:#1a2744">${e.school}</td>
+    <td>${e.coach||'<span style="color:var(--color-border-secondary)">—</span>'}</td>
+    <td>${divBadge(e.div)}</td>
+    <td><span class="badge breg">${e.region}</span></td>
+    <td>${typeBadge(e.type)}</td>
+    <td>${respBadge(e.resp)}</td>
+    <td style="font-size:11px">${e.email?`<a href="mailto:${e.email}" style="color:#2a9d8f;text-decoration:none">${e.email}</a>`:'<span style="color:var(--color-border-secondary)">—</span>'}</td>
+    <td class="nc" title="${e.notes}">${e.notes||'<span style="color:var(--color-border-secondary)">—</span>'}</td>
+    <td>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-sm" onclick="cycleResp(${e.id})" title="Toggle response status">Toggle</button>
+        <button class="btn btn-sm btn-danger" onclick="del(${e.id})">Del</button>
+      </div>
+    </td>
+  </tr>`).join('');
+}
+
+function cycleResp(id){
+  const e=data.find(x=>x.id===id);
+  if(!e)return;
+  const c={'Pending':'Yes','Yes':'No Response','No Response':'Pending'};
+  e.resp=c[e.resp]||'Pending';
+  save(); render(); stats();
+  toast(`Response: ${e.resp}`,'ok');
+}
+
+function del(id){
+  if(!confirm('Remove this entry?'))return;
+  data=data.filter(e=>e.id!==id);
+  save(); render(); stats();
+  toast('Entry removed.','ok');
+}
+
+function stats(){
+  document.getElementById('sTot').textContent=data.length;
+  document.getElementById('sResp').textContent=data.filter(e=>e.resp==='Yes').length;
+  document.getElementById('sD1').textContent=data.filter(e=>e.div==='NCAA D1').length;
+  document.getElementById('sD2').textContent=data.filter(e=>e.div==='NCAA D2').length;
+  document.getElementById('sD3').textContent=data.filter(e=>e.div==='NCAA D3').length;
+  document.getElementById('sNAIA').textContent=data.filter(e=>e.div==='NAIA').length;
+  document.getElementById('sJUCO').textContent=data.filter(e=>e.div==='JUCO').length;
+}
+
+function exportCSV(){
+  if(!data.length){toast('No entries to export.','err');return;}
+  const hdr=['Date Sent','School','Coach','Division','Region','Exposure Type','Response','Coach Email','Notes'];
+  const rows=data.map(e=>[e.date,e.school,e.coach,e.div,e.region,e.type,e.resp,e.email,e.notes].map(v=>`"${(v||'').replace(/"/g,'""')}"`).join(','));
+  const csv=[hdr.join(','),...rows].join('\n');
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(new Blob([csv],{type:'text/csv'})),download:`Taylor_Monroe_Exposure_Tracker_${new Date().toISOString().slice(0,10)}.csv`});
+  a.click(); URL.revokeObjectURL(a.href);
+  toast('CSV exported.','ok');
+}
+
+function toast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className=`toast ${type} show`;
+  setTimeout(()=>t.className='toast',2800);
+}
+
+document.getElementById('fDate').value=new Date().toISOString().slice(0,10);
+render(); stats();
+</script>
